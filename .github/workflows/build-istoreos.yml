@@ -31,7 +31,6 @@ jobs:
         REPO_BRANCH:
           - istoreos-22.03
         ARCHITECTURE:
-          - rk33xx
           - rk35xx
 
       fail-fast: false
