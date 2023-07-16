@@ -139,6 +139,7 @@ jobs:
         rm -rf istoreos-x86-64-generic-kernel.bin
         rm -rf istoreos-x86-64-generic-squashfs-rootfs.img.gz
         rm -rf istoreos-x86-64-generic.manifest
+        rm -rf istoreos-rockchip-rk35xx.manifest
         rm -rf profiles.json
         rm -rf sha256sums
         rm -rf version.buildinfo
