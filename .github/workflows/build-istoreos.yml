@@ -137,6 +137,8 @@ jobs:
         rm -rf packages
         rm -rf config.buildinfo
         rm -rf feeds.buildinfo
+        rm -rf istoreos-x86-64-generic-kernel.bin
+        rm -rf istoreos-x86-64-generic.manifest
         rm -rf profiles.json
         rm -rf sha256sums
         rm -rf version.buildinfo
