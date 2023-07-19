@@ -158,7 +158,7 @@ jobs:
       id: tag
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::${{ matrix.ARCHITECTURE }}"
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H.%M")"
         echo "::set-output name=release_name::${{ matrix.REPO_BRANCH }}-${{ matrix.ARCHITECTURE }}"
         echo "::set-output name=status::success"
 
