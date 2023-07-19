@@ -163,7 +163,7 @@ jobs:
       id: tag
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::${{ matrix.ARCHITECTURE }}"
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H.%M")"
         echo "::set-output name=release_name::${{ matrix.REPO_BRANCH }}-${{ matrix.ARCHITECTURE }}"
         echo "::set-output name=status::success"
 
@@ -176,3 +176,19 @@ jobs:
         name: ${{ steps.tag.outputs.release_name }}
         tag_name: ${{ steps.tag.outputs.release_tag }}
         files: ${{ env.FIRMWARE }}/*
+
+    - name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 5
+        token: ${{ secrets.DEPLOY_TOKEN }}
+
+    - name: Remove old Releases
+      uses: dev-drprasad/delete-older-releases@v0.1.0
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      with:
+        keep_latest: 3
+        delete_tags: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
